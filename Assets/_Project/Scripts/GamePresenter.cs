@@ -11,21 +11,14 @@ namespace X2SLIME3D
     {
         readonly CompositeDisposable disposable = new CompositeDisposable();
 
-        readonly HelloWorldService helloWorldService;
-        readonly HelloScreen helloScreen;
-
-        public GamePresenter(HelloWorldService helloWorldService, HelloScreen helloScreen)
+        public GamePresenter()
         {
-            this.helloWorldService = helloWorldService;
-            this.helloScreen = helloScreen;
         }
 
         public async UniTask StartAsync(CancellationToken cancellation)
         {
             await UniTask.Yield();  // Просто заглушка, чтобы убрать warning об отсутсвии async методов (TODO: добавить async методы или убрать асинхронность)
             //await UniTask.WaitForSeconds(0.1f, cancellationToken: cancellation); // Просто задержка в 0.1 секунду
-            
-            helloScreen.buttonHello.OnClickAsObservable().Subscribe(_ => helloWorldService.Hello()).AddTo(disposable);
         }
 
         public void Dispose() => disposable.Dispose();
