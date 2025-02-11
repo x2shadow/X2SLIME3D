@@ -10,13 +10,15 @@ namespace X2SLIME3D
     {
         readonly CompositeDisposable disposable = new CompositeDisposable();
 
-        readonly UIService uiService;
         readonly UIView uiView;
+        readonly UIService uiService;
+        readonly InputReader inputReader;
 
-        UIPresenter(UIView uiView, UIService uiService)
+        UIPresenter(UIView uiView, UIService uiService, InputReader inputReader)
         {
             this.uiView = uiView;
             this.uiService = uiService;
+            this.inputReader = inputReader;
         }
 
         public void Start()
