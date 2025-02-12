@@ -8,6 +8,24 @@ namespace X2SLIME3D
     {
         [SerializeField] Rigidbody rb;
 
+        public bool IsGrounded { get; private set; }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground")) // Убедись, что платформа имеет тег "Ground"
+            {
+                IsGrounded = true;
+            }
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                IsGrounded = false;
+            }
+        }
+
         public void Jump(float horizontalSpeed, float force)
         {
             Debug.Log("Jump!");

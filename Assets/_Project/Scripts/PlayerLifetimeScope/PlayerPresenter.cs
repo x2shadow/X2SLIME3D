@@ -32,16 +32,25 @@ namespace X2SLIME3D
             
             inputReader.JumpStart
                 .AsObservable()
-                .Subscribe(_ => pressStartTime.Value = Time.time)
+                .Subscribe(_ => 
+                {
+                    if (playerView.IsGrounded)
+                    {
+                        pressStartTime.Value = Time.time;
+                    }
+                })
                 .AddTo(disposable);
 
             inputReader.JumpEnd
                 .AsObservable()
                 .Subscribe(_ =>
                 {
-                    float pressDuration = Time.time - pressStartTime.Value;
-                    float jumpForce = playerService.CalculateJumpForce(pressDuration);
-                    playerView.Jump(jumpConfig.horizontalSpeed, jumpForce);
+                    if (playerView.IsGrounded)
+                    {
+                        float pressDuration = Time.time - pressStartTime.Value;
+                        float jumpForce = playerService.CalculateJumpForce(pressDuration);
+                        playerView.Jump(jumpConfig.horizontalSpeed, jumpForce);
+                    }
                 })
                 .AddTo(disposable);
         }
