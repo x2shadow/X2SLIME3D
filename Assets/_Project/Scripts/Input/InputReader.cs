@@ -15,6 +15,9 @@ namespace X2SLIME3D
         public readonly Subject<Unit> JumpEnd   = new Subject<Unit>();
         public readonly Subject<Unit> UIButtonClicked = new Subject<Unit>();
 
+        // Флаг для отслеживания, что прыжок уже начат
+        private bool jumpStarted = false;
+
         void OnEnable()
         {
             if (inputActions == null)
@@ -23,7 +26,6 @@ namespace X2SLIME3D
                 inputActions.Player.SetCallbacks(this);
                 inputActions.UI.SetCallbacks(this);
             }
-            EnablePlayerActions();
         }
 
         void OnDisable()
@@ -52,11 +54,25 @@ namespace X2SLIME3D
         {
             if (context.started)
             {
-                JumpStart.OnNext(Unit.Default);
-                //Debug.Log("PlayerInput: JumpStart");
+                // При нажатии проверяем, что указатель не над UI.
+                if (!UIChecker.IsPointerOverUI)
+                {
+                    jumpStarted = true;
+                    JumpStart.OnNext(Unit.Default);
+                    Debug.Log("PlayerInput: JumpStart");
+                }
             }
-
-            if (context.canceled) JumpEnd.OnNext(Unit.Default);
+            
+            if (context.canceled)
+            {
+                // При отпускании, если прыжок уже был инициирован, вызываем JumpEnd.
+                if (jumpStarted)
+                {
+                    JumpEnd.OnNext(Unit.Default);
+                    Debug.Log("PlayerInput: JumpEnd");
+                    jumpStarted = false; // сброс флага после завершения прыжка
+                }
+            }
         }
 
         public void OnClick(InputAction.CallbackContext context)

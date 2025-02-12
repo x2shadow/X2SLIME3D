@@ -1,5 +1,6 @@
 
 using System;
+using Cysharp.Threading.Tasks;
 using R3;
 using UnityEngine;
 using VContainer.Unity;
@@ -23,7 +24,12 @@ namespace X2SLIME3D
 
         public void Start()
         {
-            uiView.buttonHello.OnClickAsObservable().Subscribe(_ => uiService.Hello()).AddTo(disposable);
+            uiView.buttonHello.OnClickAsObservable()
+                .Subscribe( _ => 
+                {
+                    uiService.Hello();
+                })
+                .AddTo(disposable);
         }
 
         public void Dispose() => disposable.Dispose();

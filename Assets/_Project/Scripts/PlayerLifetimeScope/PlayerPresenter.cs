@@ -26,6 +26,8 @@ namespace X2SLIME3D
 
         public void Start()
         {
+            inputReader.EnablePlayerActions();
+            
             inputReader.JumpStart
                 .AsObservable()
                 .Subscribe(_ => pressStartTime.Value = Time.time)
