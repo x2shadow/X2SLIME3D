@@ -14,14 +14,16 @@ namespace X2SLIME3D
         readonly PlayerView playerView;
         readonly PlayerService playerService;
         readonly InputReader inputReader;
+        readonly JumpConfig jumpConfig;
 
         readonly ReactiveProperty<float> pressStartTime = new ReactiveProperty<float>();
 
-        PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader)
+        PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader, JumpConfig jumpConfig)
         {
-            this.playerView = playerView;
+            this.playerView    = playerView;
             this.playerService = playerService;
-            this.inputReader = inputReader;
+            this.inputReader   = inputReader;
+            this.jumpConfig    = jumpConfig;
         }
 
         public void Start()
@@ -39,7 +41,7 @@ namespace X2SLIME3D
                 {
                     float pressDuration = Time.time - pressStartTime.Value;
                     float jumpForce = playerService.CalculateJumpForce(pressDuration);
-                    playerView.Jump(jumpForce);
+                    playerView.Jump(jumpConfig.horizontalSpeed, jumpForce);
                 })
                 .AddTo(disposable);
         }

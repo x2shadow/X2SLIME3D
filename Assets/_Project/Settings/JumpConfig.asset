@@ -15,4 +15,3 @@ MonoBehaviour:
   minJumpForce: 5
   maxJumpForce: 15
   maxPressTime: 1
-  horizontalSpeed: 1

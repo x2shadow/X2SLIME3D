@@ -8,5 +8,6 @@ namespace X2SLIME3D
         public float minJumpForce = 5f;
         public float maxJumpForce = 15f;
         public float maxPressTime = 1f;
+        public float horizontalSpeed = 1f;
     }
 }
