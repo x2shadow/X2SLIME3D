@@ -7,11 +7,12 @@ namespace X2SLIME3D
     public class PlayerView : MonoBehaviour
     {
         [SerializeField] Rigidbody rb;
+        [SerializeField] float horizontalSpeed = 1f;
 
         public void Jump(float force)
         {
             Debug.Log("Jump!");
-            rb.velocity = new Vector3(rb.velocity.x + 1f, force, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x + horizontalSpeed, force, rb.velocity.z);
         }
     }
 }

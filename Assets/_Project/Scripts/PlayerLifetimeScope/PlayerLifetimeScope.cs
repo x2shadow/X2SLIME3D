@@ -8,6 +8,7 @@ namespace X2SLIME3D
     {
         [SerializeField] PlayerView playerView;
         [SerializeField] InputReader inputReader;
+        [SerializeField] JumpConfig jumpConfig;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -15,6 +16,7 @@ namespace X2SLIME3D
             builder.Register<PlayerService>(Lifetime.Scoped);
             builder.RegisterComponent(playerView);
             builder.RegisterInstance(inputReader);
+            builder.RegisterInstance(jumpConfig);
         }
     }
 }
