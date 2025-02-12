@@ -45,6 +45,8 @@ namespace X2SLIME3D
             await loadOp.ToUniTask();
             Debug.Log($"Уровень {sceneName} загружен");
 
+            MovePlayerToSpawnPoint();
+
             // Находим компонент LevelFinish в загруженной сцене
             LevelFinish finish = GameObject.FindObjectOfType<LevelFinish>();
             if (finish == null)
@@ -71,6 +73,27 @@ namespace X2SLIME3D
             // Выгружаем текущую сцену
             AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
             await unloadOp.ToUniTask();
+        }
+
+        private void MovePlayerToSpawnPoint()
+        {
+            GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+            if (spawnPoint == null)
+            {
+                Debug.LogError("SpawnPoint не найден в сцене!");
+                return;
+            }
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogError("Игрок не найден!");
+                return;
+            }
+
+            player.transform.position = spawnPoint.transform.position;
+            spawnPoint.SetActive(false);
+            Debug.Log("Игрок перемещён в SpawnPoint");
         }
 
         public void Dispose() => disposable.Dispose();

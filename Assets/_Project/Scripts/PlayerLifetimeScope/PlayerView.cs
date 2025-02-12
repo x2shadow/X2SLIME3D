@@ -29,7 +29,13 @@ namespace X2SLIME3D
         public void Jump(float horizontalSpeed, float force)
         {
             Debug.Log("Jump!");
-            rb.velocity = new Vector3(rb.velocity.x + horizontalSpeed, force, rb.velocity.z);
+            
+            // Сбрасываем вертикальную скорость, чтобы прыжки были предсказуемыми
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // Применяем один импульс сразу для горизонтального и вертикального движения
+            Vector3 jumpForce = new Vector3(horizontalSpeed, force, 0f);
+            rb.AddForce(jumpForce, ForceMode.Impulse);
         }
     }
 }
