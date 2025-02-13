@@ -30,6 +30,13 @@ namespace X2SLIME3D
                     uiService.Hello();
                 })
                 .AddTo(disposable);
+            
+            uiView.buttonRestart.OnClickAsObservable()
+                .Subscribe( _ => 
+                {
+                    uiService.Restart();
+                })
+                .AddTo(disposable);
         }
 
         public void Dispose() => disposable.Dispose();

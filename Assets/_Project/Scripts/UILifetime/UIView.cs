@@ -8,5 +8,6 @@ namespace X2SLIME3D
     public class UIView : MonoBehaviour
     {
         public Button buttonHello;
+        public Button buttonRestart;
     }
 }
