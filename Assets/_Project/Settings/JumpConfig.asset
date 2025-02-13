@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f633c57f2194d7140be6bee5402c6701, type: 3}
   m_Name: JumpConfig
   m_EditorClassIdentifier: 
-  minJumpForce: 5
-  maxJumpForce: 15
+  minJumpForce: 2
+  maxJumpForce: 8
+  minForwardForce: 1
+  maxForwardForce: 2
   maxPressTime: 1
-  horizontalSpeed: 1

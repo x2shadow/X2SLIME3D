@@ -59,7 +59,7 @@ namespace X2SLIME3D
                 {
                     jumpStarted = true;
                     JumpStart.OnNext(Unit.Default);
-                    Debug.Log("PlayerInput: JumpStart");
+                    //Debug.Log("PlayerInput: JumpStart");
                 }
             }
             
@@ -69,8 +69,8 @@ namespace X2SLIME3D
                 if (jumpStarted)
                 {
                     JumpEnd.OnNext(Unit.Default);
-                    Debug.Log("PlayerInput: JumpEnd");
                     jumpStarted = false; // сброс флага после завершения прыжка
+                    //Debug.Log("PlayerInput: JumpEnd");
                 }
             }
         }

@@ -18,5 +18,11 @@ namespace X2SLIME3D
             float time = Mathf.Clamp01(pressDuration / jumpConfig.maxPressTime);
             return Mathf.Lerp(jumpConfig.minJumpForce, jumpConfig.maxJumpForce, time);
         }
+
+        public float CalculateForwardForce(float pressDuration)
+        {
+            float time = Mathf.Clamp01(pressDuration / jumpConfig.maxPressTime);
+            return Mathf.Lerp(jumpConfig.minForwardForce, jumpConfig.maxForwardForce, time);
+        }
     }
 }
