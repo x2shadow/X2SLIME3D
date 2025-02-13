@@ -62,7 +62,7 @@ namespace X2SLIME3D
                     float jumpForce    = playerService.CalculateJumpForce(pressDuration);
                     float forwardForce = playerService.CalculateForwardForce(pressDuration);
 
-                    playerView.Jump(forwardForce, jumpForce);
+                    if (playerView.IsGrounded) playerView.Jump(forwardForce, jumpForce);
                     
                     jumpEligible.Value = false;
 
