@@ -6,6 +6,7 @@ using VContainer.Unity;
 using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace X2SLIME3D
 {
@@ -101,7 +102,9 @@ namespace X2SLIME3D
                     levelCompleted = true;
                 }
             }
-
+            
+            DOTween.KillAll();
+            
             // После завершения уровня выгружаем сцену
             AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
             await unloadOp.ToUniTask();

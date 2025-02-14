@@ -1444,7 +1444,6 @@ MonoBehaviour:
   rb: {fileID: 1592852229}
   jumpTrayPrefab: {fileID: 1205090691}
   playerRenderer: {fileID: 970904479}
-  groundCheckRadius: 0.1
   groundCheckDistance: 0.2
   groundLayer:
     serializedVersion: 2
