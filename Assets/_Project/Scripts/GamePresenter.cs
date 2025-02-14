@@ -23,6 +23,7 @@ namespace X2SLIME3D
 
         public void Start()
         {
+            currentLevelIndex = GetLoadedLevelNumber() - 1;
             RunGameFlow().Forget();
         }
 
@@ -34,17 +35,26 @@ namespace X2SLIME3D
                 currentLevelIndex++;
             }
             Debug.Log("Все уровни пройдены!");
+            currentLevelIndex = 0;
         }
 
         private async UniTask LoadAndPlayCurrentLevel()
         {
             string sceneName = levelSceneNames[currentLevelIndex];
-            Debug.Log($"Загрузка уровня: {sceneName}");
+            Scene scene = SceneManager.GetSceneByName(sceneName);
 
-            // Загружаем сцену один раз
-            AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            await loadOp.ToUniTask();
-            Debug.Log($"Уровень {sceneName} загружен");
+            // Если сцена ещё не загружена, загружаем её
+            if (!scene.isLoaded)
+            {
+                Debug.Log($"Загрузка уровня: {sceneName}");
+                AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+                await loadOp.ToUniTask();
+                Debug.Log($"Уровень {sceneName} загружен");
+            }
+            else
+            {
+                Debug.Log($"Сцена {sceneName} уже загружена, пропускаем загрузку.");
+            }
 
             // Находим SpawnPoint и перемещаем игрока туда
             GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
@@ -110,6 +120,25 @@ namespace X2SLIME3D
             await unloadOp.ToUniTask();
         }
 
+        int GetLoadedLevelNumber()
+        {
+            int sceneCount = SceneManager.sceneCount;
+            for (int i = 0; i < sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (scene.name.StartsWith("Level"))
+                {
+                    // Извлекаем часть имени, которая следует за "Level"
+                    string numberPart = scene.name.Substring("Level".Length);
+                    if (int.TryParse(numberPart, out int levelNumber))
+                    {
+                        return levelNumber;
+                    }
+                }
+            }
+            return 1; // Если ни одна сцена не найдена или число не удалось распарсить
+        }
+
 
         private async UniTask RestartCurrentLevel()
         {
@@ -134,8 +163,9 @@ namespace X2SLIME3D
                 return;
             }
 
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.transform.position = spawnPoint.transform.position;
-            // Если не нужно деактивировать SpawnPoint, можно убрать следующую строку:
+            
             spawnPoint.SetActive(false);
             Debug.Log("Игрок перемещён в SpawnPoint");
         }
