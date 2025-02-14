@@ -40,50 +40,90 @@ namespace X2SLIME3D
             string sceneName = levelSceneNames[currentLevelIndex];
             Debug.Log($"Загрузка уровня: {sceneName}");
 
-            // Загружаем сцену аддитивно
+            // Загружаем сцену один раз
             AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             await loadOp.ToUniTask();
             Debug.Log($"Уровень {sceneName} загружен");
 
-            MovePlayerToSpawnPoint();
-
-            // Находим компонент LevelFinish в загруженной сцене
-            LevelFinish finish = GameObject.FindObjectOfType<LevelFinish>();
-            if (finish == null)
-            {
-                Debug.LogWarning("LevelFinish не найден в сцене!");
-                return;
-            }
-
-            // Создаем UniTaskCompletionSource для ожидания первого события завершения уровня
-            var tcs = new UniTaskCompletionSource();
-
-            // Подписываемся на реактивное событие OnLevelFinished
-            // Когда срабатывает событие, вызывается tcs.TrySetResult(), что разблокирует await
-            var subscription = finish.OnLevelFinished.Subscribe(_ => tcs.TrySetResult());
-
-            // Ожидаем, пока не придет первое уведомление о завершении уровня
-            await tcs.Task;
-
-            // Отписываемся от события, чтобы не было утечек памяти
-            subscription.Dispose();
-
-            Debug.Log("Уровень завершён, выгружаем сцену...");
-
-            // Выгружаем текущую сцену
-            AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
-            await unloadOp.ToUniTask();
-        }
-
-        private void MovePlayerToSpawnPoint()
-        {
+            // Находим SpawnPoint и перемещаем игрока туда
             GameObject spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
             if (spawnPoint == null)
             {
                 Debug.LogError("SpawnPoint не найден в сцене!");
                 return;
             }
+            MovePlayerToSpawnPoint(spawnPoint);
 
+            // Находим компоненты, отвечающие за завершение уровня и за "падение в воду"
+            LevelFinish finish   = GameObject.FindObjectOfType<LevelFinish>();
+            LevelRestart restart = GameObject.FindObjectOfType<LevelRestart>();
+
+            if (finish == null)
+            {
+                Debug.LogWarning("LevelFinish не найден в сцене!");
+                return;
+            }
+
+            if (restart == null)
+            {
+                Debug.LogWarning("LevelRestart не найден в сцене!");
+                return;
+            }
+
+            // Пока уровень не завершён, ждём событий
+            bool levelCompleted = false;
+            while (!levelCompleted)
+            {
+                var finishTcs  = new UniTaskCompletionSource();
+                var restartTcs = new UniTaskCompletionSource();
+
+                var subscriptionFinish  = finish.OnLevelFinished.Subscribe(_ => finishTcs.TrySetResult());
+                var subscriptionRestart = restart.OnLevelRestarted.Subscribe(_ => restartTcs.TrySetResult());
+
+                // Ожидаем либо завершения уровня, либо "падения в воду"
+                var completedTask = await UniTask.WhenAny(finishTcs.Task, restartTcs.Task);
+
+                // Отписываемся от событий, чтобы избежать утечек памяти
+                subscriptionFinish.Dispose();
+                subscriptionRestart.Dispose();
+
+                if (completedTask == 1)
+                {
+                    // Событие перезапуска (игрок упал в воду)
+                    Debug.Log("Игрок упал в воду! Перемещаем в SpawnPoint.");
+                    MovePlayerToSpawnPoint(spawnPoint);
+                    // После перемещения продолжаем ждать события завершения уровня
+                }
+                else
+                {
+                    // Событие завершения уровня
+                    Debug.Log("Уровень завершён!");
+                    levelCompleted = true;
+                }
+            }
+
+            // После завершения уровня выгружаем сцену
+            AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
+            await unloadOp.ToUniTask();
+        }
+
+
+        private async UniTask RestartCurrentLevel()
+        {
+            string sceneName = levelSceneNames[currentLevelIndex];
+            Debug.Log($"Перезапуск уровня: {sceneName}");
+
+            AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
+            await unloadOp.ToUniTask();
+
+            AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            await loadOp.ToUniTask();
+
+            //MovePlayerToSpawnPoint();
+        }
+
+        private void MovePlayerToSpawnPoint(GameObject spawnPoint)
+        {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player == null)
             {
@@ -92,9 +132,11 @@ namespace X2SLIME3D
             }
 
             player.transform.position = spawnPoint.transform.position;
+            // Если не нужно деактивировать SpawnPoint, можно убрать следующую строку:
             spawnPoint.SetActive(false);
             Debug.Log("Игрок перемещён в SpawnPoint");
         }
+
 
         public void Dispose() => disposable.Dispose();
     }
