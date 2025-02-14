@@ -7,11 +7,9 @@ namespace X2SLIME3D
     public class PlayerView : MonoBehaviour
     {
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private GameObject jumpTrayPrefab;
         [SerializeField] private Renderer playerRenderer; // 🎨 Ссылка на материал
 
         [Header("Ground Check (SphereCast)")]
-        //[SerializeField] private float groundCheckRadius = 0.5f;
         [SerializeField] private float groundCheckDistance = 1f;
         [SerializeField] private LayerMask groundLayer;
 

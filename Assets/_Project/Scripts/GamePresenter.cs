@@ -24,12 +24,13 @@ namespace X2SLIME3D
         public void Start()
         {
             currentLevelIndex = GetLoadedLevelNumber() - 1;
+            Debug.Log(SceneManager.sceneCount);
             RunGameFlow().Forget();
         }
 
         private async UniTask RunGameFlow()
         {
-            while (currentLevelIndex < levelSceneNames.Length)
+            while (currentLevelIndex < (SceneManager.sceneCountInBuildSettings - 1))
             {
                 await LoadAndPlayCurrentLevel();
                 currentLevelIndex++;
@@ -40,7 +41,8 @@ namespace X2SLIME3D
 
         private async UniTask LoadAndPlayCurrentLevel()
         {
-            string sceneName = levelSceneNames[currentLevelIndex];
+            string sceneName = "Level" + (currentLevelIndex + 1); 
+            Debug.Log(sceneName);
             Scene scene = SceneManager.GetSceneByName(sceneName);
 
             // Если сцена ещё не загружена, загружаем её
