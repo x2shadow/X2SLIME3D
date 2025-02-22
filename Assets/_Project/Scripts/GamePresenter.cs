@@ -167,7 +167,6 @@ namespace X2SLIME3D
 
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.transform.position = spawnPoint.transform.position;
-            
             spawnPoint.SetActive(false);
             Debug.Log("Игрок перемещён в SpawnPoint");
         }
