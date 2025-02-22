@@ -9,6 +9,7 @@ namespace X2SLIME3D
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<GamePresenter>();
+            builder.Register<UIService>(Lifetime.Singleton);
         }
     }
 }

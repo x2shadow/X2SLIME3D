@@ -12,7 +12,6 @@ namespace X2SLIME3D
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<UIPresenter>(Lifetime.Scoped);
-            builder.Register<UIService>(Lifetime.Scoped);
             builder.RegisterComponent(uiView);
             builder.RegisterInstance(inputReader);
         }

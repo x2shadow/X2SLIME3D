@@ -14,17 +14,18 @@ namespace X2SLIME3D
     {
         readonly CompositeDisposable disposable = new CompositeDisposable();
 
-        private readonly string[] levelSceneNames = { "Level1", "Level2"};
+        readonly UIService uiService;
+
         private int currentLevelIndex = 0;
 
-        GamePresenter()
+        GamePresenter(UIService uiService)
         {
+            this.uiService = uiService;
         }
 
         public void Start()
         {
             currentLevelIndex = GetLoadedLevelNumber() - 1;
-            Debug.Log(SceneManager.sceneCount);
             RunGameFlow().Forget();
         }
 
@@ -41,8 +42,8 @@ namespace X2SLIME3D
 
         private async UniTask LoadAndPlayCurrentLevel()
         {
-            string sceneName = "Level" + (currentLevelIndex + 1); 
-            Debug.Log(sceneName);
+            string sceneName = "Level" + (currentLevelIndex + 1);
+            uiService.UpdateLevel(currentLevelIndex + 1); 
             Scene scene = SceneManager.GetSceneByName(sceneName);
 
             // Если сцена ещё не загружена, загружаем её
@@ -141,21 +142,6 @@ namespace X2SLIME3D
             return 1; // Если ни одна сцена не найдена или число не удалось распарсить
         }
 
-
-        private async UniTask RestartCurrentLevel()
-        {
-            string sceneName = levelSceneNames[currentLevelIndex];
-            Debug.Log($"Перезапуск уровня: {sceneName}");
-
-            AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
-            await unloadOp.ToUniTask();
-
-            AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            await loadOp.ToUniTask();
-
-            //MovePlayerToSpawnPoint();
-        }
-
         private void MovePlayerToSpawnPoint(GameObject spawnPoint)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -167,7 +153,7 @@ namespace X2SLIME3D
 
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             player.transform.position = spawnPoint.transform.position;
-            spawnPoint.SetActive(false);
+            //spawnPoint.SetActive(false);
             Debug.Log("Игрок перемещён в SpawnPoint");
         }
 

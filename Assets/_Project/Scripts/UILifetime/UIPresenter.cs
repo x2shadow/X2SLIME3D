@@ -13,13 +13,11 @@ namespace X2SLIME3D
 
         readonly UIView uiView;
         readonly UIService uiService;
-        readonly InputReader inputReader;
 
-        UIPresenter(UIView uiView, UIService uiService, InputReader inputReader)
+        UIPresenter(UIView uiView, UIService uiService)
         {
             this.uiView = uiView;
             this.uiService = uiService;
-            this.inputReader = inputReader;
         }
 
         public void Start()
@@ -35,6 +33,13 @@ namespace X2SLIME3D
                 .Subscribe( _ => 
                 {
                     uiService.Restart();
+                })
+                .AddTo(disposable);
+            
+            uiService.OnLevelUpdated
+                .Subscribe( number =>
+                { 
+                    uiView.UpdateLevelNumber(number);
                 })
                 .AddTo(disposable);
         }
