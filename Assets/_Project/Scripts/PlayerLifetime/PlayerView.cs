@@ -7,14 +7,14 @@ namespace X2SLIME3D
     public class PlayerView : MonoBehaviour
     {
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private Renderer playerRenderer; // 🎨 Ссылка на материал
+        [SerializeField] private Renderer playerRenderer; 
 
         [Header("Ground Check (SphereCast)")]
         [SerializeField] private float groundCheckDistance = 1f;
         [SerializeField] private LayerMask groundLayer;
 
         private readonly ReactiveProperty<bool> isGrounded = new ReactiveProperty<bool>();
-        private readonly ReactiveProperty<bool> isChargingJump = new ReactiveProperty<bool>(); // 🟡 Зарядка прыжка
+        private readonly ReactiveProperty<bool> isChargingJump = new ReactiveProperty<bool>(); 
 
         public ReadOnlyReactiveProperty<bool> IsGroundedObservable => isGrounded;
         public ReadOnlyReactiveProperty<bool> IsChargingJumpObservable => isChargingJump;
