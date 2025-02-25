@@ -103,7 +103,10 @@ namespace X2SLIME3D
                 if (completedTask == 1)
                 {
                     Debug.Log("Игрок упал в воду! Перемещаем в SpawnPoint.");
+                    player.gameObject.SetActive(false);
                     MovePlayerToSpawnPoint(spawnPoint);
+                    await UniTask.Delay(100);
+                    player.gameObject.SetActive(true);  
                 }
                 else
                 {

@@ -1198,7 +1198,6 @@ MonoBehaviour:
   autoInjectGameObjects:
   - {fileID: 1361683606}
   uiView: {fileID: 1361683607}
-  inputReader: {fileID: 11400000, guid: d4cd8209034a830488f150cf1e5a07ce, type: 2}
 --- !u!4 &1146397861
 Transform:
   m_ObjectHideFlags: 0
