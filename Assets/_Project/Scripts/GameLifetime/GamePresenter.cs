@@ -91,7 +91,7 @@ namespace X2SLIME3D
                 var restartTcs = new UniTaskCompletionSource();
 
                 var subscriptionFinish  = finish.OnLevelFinished.Subscribe(_ => finishTcs.TrySetResult());
-                var subscriptionRestart = restart.OnLevelRestarted.Subscribe(_ => restartTcs.TrySetResult());
+                var subscriptionRestart = Observable.Merge(restart.OnLevelRestarted, uiService.OnLevelRestarted).Subscribe(_ => restartTcs.TrySetResult());
 
                 // Ожидаем либо завершения уровня, либо "падения в воду"
                 var completedTask = await UniTask.WhenAny(finishTcs.Task, restartTcs.Task);

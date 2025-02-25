@@ -8,6 +8,7 @@ namespace X2SLIME3D
    public class UIService
    {
       public BehaviorSubject<int> OnLevelUpdated = new BehaviorSubject<int>(0);
+      public Subject<Unit> OnLevelRestarted = new Subject<Unit>();
 
       public void UpdateLevel(int currentLevel)
       {
@@ -21,7 +22,7 @@ namespace X2SLIME3D
 
       public void Restart()
       {
-         SceneManager.LoadScene(0);  // Boot Scene
+         OnLevelRestarted.OnNext(Unit.Default);
       }
    }
 }
