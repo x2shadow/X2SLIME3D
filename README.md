@@ -13,3 +13,4 @@ Game about cute jumping slime
 - [R3 v1.2.9](https://github.com/Cysharp/R3)
 - [DOTween v1.2.765](https://dotween.demigiant.com/index.php)
 - [Safe Area Helper](https://assetstore.unity.com/packages/tools/gui/safe-area-helper-130488)
+- [GradientSkybox] (https://github.com/aadebdeb/GradientSkybox)
