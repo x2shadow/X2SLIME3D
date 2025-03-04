@@ -53,7 +53,7 @@ namespace X2SLIME3D
                 // Если игра не запущена, используем позицию target
                 Vector3 positionToDraw = Application.isPlaying ? endPosition : target.position;
 
-                Gizmos.DrawWireCube(positionToDraw, new Vector3(target.localScale.x * 2, target.localScale.y, target.localScale.z));
+                Gizmos.DrawWireCube(positionToDraw, new Vector3(target.localScale.z, target.localScale.y, target.localScale.x));
             }
         }
 
