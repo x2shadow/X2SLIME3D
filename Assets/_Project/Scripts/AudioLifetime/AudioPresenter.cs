@@ -19,10 +19,10 @@ namespace X2SLIME3D
 
         public void Start()
         {
-            audioService.OnSoundJumpPlayed
-                .Subscribe( _ =>
+            audioService.OnSoundPlayed
+                .Subscribe( sound =>
                 {
-                    audioView.PlayJumpSound();
+                    audioView.PlaySound(sound);
                 })
                 .AddTo(disposable);
         }

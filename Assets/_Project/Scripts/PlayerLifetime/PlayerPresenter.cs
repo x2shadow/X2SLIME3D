@@ -71,10 +71,7 @@ namespace X2SLIME3D
                     jumpEligible.Value = false;
 
                     playerView.SetChargingJump(false);
-                    //Debug.Log($"audioView: {audioView}");
-                    //Debug.Log($"soundJump: {audioView.soundJump}");
-                    //Debug.Log($"audioService: {audioService}");
-                    audioService.PlayJumpSound();
+                    audioService.PlaySound(SoundType.Jump);
                 })
                 .AddTo(disposable);
 

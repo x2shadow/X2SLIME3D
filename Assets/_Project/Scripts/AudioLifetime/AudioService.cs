@@ -1,13 +1,28 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using R3;
+using System.Collections.Generic;
 
 namespace X2SLIME3D
 {
+    public enum SoundType
+    {
+        Collision1,
+        Collision2,
+        Jump,
+        JumpIn,
+        Splash,
+        Win1,
+        Win2,
+        Win3,
+        Win4,
+        Win5
+    }
+
     public class AudioService
     {
         readonly AudioMixer audioMixer;
-        readonly AudioSource soundSource;
+        readonly Dictionary<SoundType, AudioClip> soundClips;
 
         const string MusicVolumeKey = "MusicVolume";
         const string SoundVolumeKey = "SoundVolume";
@@ -16,12 +31,25 @@ namespace X2SLIME3D
         public ReactiveProperty<float> MusicVolume { get; private set; }
         public ReactiveProperty<float> SoundVolume { get; private set; }
 
-      public Subject<Unit> OnSoundJumpPlayed = new Subject<Unit>();
+        public Subject<AudioClip> OnSoundPlayed = new Subject<AudioClip>();
 
         public AudioService(AudioView audioView)
         {
             audioMixer = audioView.audioMixer;
-            soundSource = audioView.soundSource;
+
+            soundClips = new Dictionary<SoundType, AudioClip>()
+            {
+                { SoundType.Collision1, audioView.soundCollision1 },
+                { SoundType.Collision2, audioView.soundCollision2 },
+                { SoundType.Jump,       audioView.soundJump },
+                { SoundType.JumpIn,     audioView.soundJumpIn },
+                { SoundType.Splash,     audioView.soundSplash },
+                { SoundType.Win1,       audioView.soundWin1 },
+                { SoundType.Win2,       audioView.soundWin2 },
+                { SoundType.Win3,       audioView.soundWin3 },
+                { SoundType.Win4,       audioView.soundWin4 },
+                { SoundType.Win5,       audioView.soundWin5 }
+            };
 
             // Инициализация реактивных свойств из PlayerPrefs
             MusicVolume = new ReactiveProperty<float>(PlayerPrefs.GetFloat(MusicVolumeKey, 0.5f));
@@ -64,14 +92,6 @@ namespace X2SLIME3D
             PlayerPrefs.Save(); 
         }
 
-        public void PlayJumpSound()
-        {
-            OnSoundJumpPlayed.OnNext(Unit.Default);
-        }
-
-        public void PlaySound(AudioClip sound)
-        {
-            soundSource.PlayOneShot(sound);
-        }
+        public void PlaySound(SoundType type) => OnSoundPlayed.OnNext(soundClips[type]);
     }
 }

@@ -38,9 +38,6 @@ namespace X2SLIME3D
             soundSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Sound")[0];
         }
 
-        public void PlayJumpSound()
-        {
-            soundSource.PlayOneShot(soundJump);
-        }
+        public void PlaySound(AudioClip sound) => soundSource.PlayOneShot(sound);
     }
 }
