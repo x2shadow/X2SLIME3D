@@ -6,7 +6,6 @@ namespace X2SLIME3D
 {
     public class PlayerLifetimeScope : LifetimeScope
     {
-        [SerializeField] PlayerView playerView;
         [SerializeField] InputReader inputReader;
         [SerializeField] JumpConfig jumpConfig;
 
@@ -14,7 +13,6 @@ namespace X2SLIME3D
         {
             builder.RegisterEntryPoint<PlayerPresenter>(Lifetime.Scoped);
             builder.Register<PlayerService>(Lifetime.Scoped);
-            builder.RegisterComponent(playerView);
             builder.RegisterInstance(inputReader);
             builder.RegisterInstance(jumpConfig);
         }

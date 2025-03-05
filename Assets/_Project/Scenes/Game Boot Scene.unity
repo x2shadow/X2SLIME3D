@@ -1271,9 +1271,7 @@ MonoBehaviour:
   parentReference:
     TypeName: X2SLIME3D.GameLifetimeScope
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 1592852224}
-  playerView: {fileID: 1592852228}
+  autoInjectGameObjects: []
   inputReader: {fileID: 11400000, guid: d4cd8209034a830488f150cf1e5a07ce, type: 2}
   jumpConfig: {fileID: 11400000, guid: bba8c25c61e34994c8fb03effb211926, type: 2}
 --- !u!1 &1361683606
@@ -1716,9 +1714,7 @@ MonoBehaviour:
   parentReference:
     TypeName: X2SLIME3D.GameLifetimeScope
   autoRun: 1
-  autoInjectGameObjects:
-  - {fileID: 239971029}
-  audioView: {fileID: 239971030}
+  autoInjectGameObjects: []
   audioMixer: {fileID: 24100000, guid: 4e8cc8bb55c82744e8d3b50e0cb08cec, type: 2}
 --- !u!4 &1726545185
 Transform:
@@ -2206,7 +2202,7 @@ PrefabInstance:
       objectReference: {fileID: 1592852228}
     - target: {fileID: 41463313119751536, guid: d439895fbe5aa824f8b44b3875334834, type: 3}
       propertyPath: autoInjectGameObjects.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 41463313119751536, guid: d439895fbe5aa824f8b44b3875334834, type: 3}
       propertyPath: autoInjectGameObjects.Array.data[0]

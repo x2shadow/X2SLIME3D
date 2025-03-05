@@ -14,21 +14,21 @@ namespace X2SLIME3D
         readonly PlayerView playerView;
         readonly PlayerService playerService;
         readonly InputReader inputReader;
-        //readonly AudioService audioService;
+        readonly AudioService audioService;
         readonly JumpConfig jumpConfig;
 
         readonly ReactiveProperty<float> pressStartTime = new ReactiveProperty<float>();
         private readonly ReactiveProperty<bool> jumpEligible = new ReactiveProperty<bool>(false);
         private bool isJumpButtonHeld = false; // Флаг удержания кнопки в воздухе
 
-        PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader, JumpConfig jumpConfig)//,
-                        //AudioService audioService)
+        PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader, JumpConfig jumpConfig,
+                        AudioService audioService)
         {
             this.playerView    = playerView;
             this.playerService = playerService;
             this.inputReader   = inputReader;
             this.jumpConfig    = jumpConfig;
-            //this.audioService  = audioService;
+            this.audioService  = audioService;
         }
 
         public void Start()
@@ -74,7 +74,7 @@ namespace X2SLIME3D
                     //Debug.Log($"audioView: {audioView}");
                     //Debug.Log($"soundJump: {audioView.soundJump}");
                     //Debug.Log($"audioService: {audioService}");
-                    //audioService.PlayJumpSound();
+                    audioService.PlayJumpSound();
                 })
                 .AddTo(disposable);
 
