@@ -31,7 +31,9 @@ namespace X2SLIME3D
         public ReactiveProperty<float> MusicVolume { get; private set; }
         public ReactiveProperty<float> SoundVolume { get; private set; }
 
-        public Subject<AudioClip> OnSoundPlayed = new Subject<AudioClip>();
+        public Subject<AudioClip> OnSoundPlayed  = new Subject<AudioClip>();
+        public Subject<Unit> OnSoundJumpInPlayed = new Subject<Unit>();
+        public Subject<Unit> OnSoundJumpInStoped = new Subject<Unit>();
 
         public AudioService(AudioView audioView)
         {
@@ -93,5 +95,8 @@ namespace X2SLIME3D
         }
 
         public void PlaySound(SoundType type) => OnSoundPlayed.OnNext(soundClips[type]);
+        
+        public void PlaySoundJumpIn() => OnSoundJumpInPlayed.OnNext(Unit.Default);
+        public void StopSoundJumpIn() => OnSoundJumpInStoped.OnNext(Unit.Default);
     }
 }

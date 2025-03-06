@@ -18,8 +18,9 @@ namespace X2SLIME3D
         readonly JumpConfig jumpConfig;
 
         readonly ReactiveProperty<float> pressStartTime = new ReactiveProperty<float>();
-        private readonly ReactiveProperty<bool> jumpEligible = new ReactiveProperty<bool>(false);
-        private bool isJumpButtonHeld = false; // Флаг удержания кнопки в воздухе
+        readonly ReactiveProperty<bool> jumpEligible = new ReactiveProperty<bool>(false);
+        bool isJumpButtonHeld = false; // Флаг удержания кнопки в воздухе
+        bool jumpInPlayed = false;     // Флаг: уже запущен звук JumpIn в текущей попытке прыжка
 
         PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader, JumpConfig jumpConfig,
                         AudioService audioService)
@@ -47,7 +48,8 @@ namespace X2SLIME3D
                     {
                         jumpEligible.Value = true;
                         playerView.SetChargingJump(true);
-                        //audioService.PlaySound(audioView.soundJumpIn);
+                        audioService.PlaySoundJumpIn();
+                        jumpInPlayed = true;
                     }
                 })
                 .AddTo(disposable);
@@ -66,12 +68,13 @@ namespace X2SLIME3D
                     float jumpForce    = playerService.CalculateJumpForce(pressDuration);
                     float forwardForce = playerService.CalculateForwardForce(pressDuration);
 
-                    if (playerView.IsGrounded) playerView.Jump(forwardForce, jumpForce);
-                    
                     jumpEligible.Value = false;
-
+                    
                     playerView.SetChargingJump(false);
-                    audioService.PlaySound(SoundType.Jump);
+                    audioService.StopSoundJumpIn();
+                    jumpInPlayed = false;
+
+                    if (playerView.IsGrounded) { playerView.Jump(forwardForce, jumpForce);  audioService.PlaySound(SoundType.Jump); }
                 })
                 .AddTo(disposable);
 
@@ -80,12 +83,14 @@ namespace X2SLIME3D
                 .Where(isGrounded => isGrounded) // Срабатывает только при приземлении
                 .Subscribe(_ =>
                 {
-                    if (isJumpButtonHeld)
+                    if (isJumpButtonHeld && !jumpInPlayed)
                     {
                         pressStartTime.Value = Time.time;
                         jumpEligible.Value = true;
 
                         playerView.SetChargingJump(true);
+                        audioService.PlaySoundJumpIn();
+                        jumpInPlayed = true;
                     }
                 })
                 .AddTo(disposable);

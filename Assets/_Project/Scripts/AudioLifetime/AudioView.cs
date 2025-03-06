@@ -39,5 +39,17 @@ namespace X2SLIME3D
         }
 
         public void PlaySound(AudioClip sound) => soundSource.PlayOneShot(sound);
+
+        public void PlaySoundJumpIn()
+        {
+            soundSource.clip = soundJumpIn;
+            if (soundSource.clip == soundJumpIn && !soundSource.isPlaying)
+            soundSource.Play();
+        }
+
+        public void StopSoundJumpIn()
+        {
+            if (soundSource.clip == soundJumpIn && soundSource.isPlaying) soundSource.Stop();
+        }
     }
 }

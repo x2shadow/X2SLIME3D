@@ -25,6 +25,20 @@ namespace X2SLIME3D
                     audioView.PlaySound(sound);
                 })
                 .AddTo(disposable);
+
+            audioService.OnSoundJumpInPlayed
+                .Subscribe( _ =>
+                {
+                    audioView.PlaySoundJumpIn();
+                })
+                .AddTo(disposable);
+            
+            audioService.OnSoundJumpInStoped
+                .Subscribe( _ =>
+                {
+                    audioView.StopSoundJumpIn();
+                })
+                .AddTo(disposable);
         }
 
         public void Dispose() => disposable.Dispose();
