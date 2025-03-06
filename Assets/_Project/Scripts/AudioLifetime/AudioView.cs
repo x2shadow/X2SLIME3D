@@ -43,7 +43,6 @@ namespace X2SLIME3D
         public void PlaySoundJumpIn()
         {
             soundSource.clip = soundJumpIn;
-            if (soundSource.clip == soundJumpIn && !soundSource.isPlaying)
             soundSource.Play();
         }
 

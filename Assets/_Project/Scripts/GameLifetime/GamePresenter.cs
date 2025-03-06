@@ -16,13 +16,21 @@ namespace X2SLIME3D
 
         readonly UIService uiService;
         readonly PlayerView player;
+        readonly AudioService audioService;
 
         private int currentLevelIndex = 0;
 
-        GamePresenter(UIService uiService, PlayerView player)
+        private int winSoundIndex = 0;
+        private readonly SoundType[] winSounds = 
+        {
+            SoundType.Win1, SoundType.Win2, SoundType.Win3, SoundType.Win4, SoundType.Win5
+        };
+
+        GamePresenter(UIService uiService, PlayerView player, AudioService audioService)
         {
             this.uiService = uiService;
             this.player = player;
+            this.audioService = audioService;
         }
 
         public void Start()
@@ -103,6 +111,7 @@ namespace X2SLIME3D
                 if (completedTask == 1)
                 {
                     Debug.Log("Игрок упал в воду! Перемещаем в SpawnPoint.");
+                    audioService.PlaySound(SoundType.Splash);
                     player.gameObject.SetActive(false);
                     MovePlayerToSpawnPoint(spawnPoint);
                     await UniTask.Delay(100);
@@ -112,6 +121,7 @@ namespace X2SLIME3D
                 {
                     Debug.Log("Уровень завершён!");
                     levelCompleted = true;
+                    PlayNextWinSound();
                 }
             }
             
@@ -154,6 +164,12 @@ namespace X2SLIME3D
             return null;
         }
         //^^^^
+
+        public void PlayNextWinSound()
+        {
+            audioService.PlaySound(winSounds[winSoundIndex]); 
+            winSoundIndex = (winSoundIndex + 1) % winSounds.Length; // Инкрементируем и сбрасываем при 5
+        }
 
         int GetLoadedLevelNumber()
         {

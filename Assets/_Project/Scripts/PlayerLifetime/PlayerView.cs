@@ -22,7 +22,6 @@ namespace X2SLIME3D
 
         private void Start()
         {
-            // Подписка на изменение `isChargingJump`
             isChargingJump.Subscribe(charging =>
             {
                 playerRenderer.material.color = charging ? Color.yellow : Color.green;
