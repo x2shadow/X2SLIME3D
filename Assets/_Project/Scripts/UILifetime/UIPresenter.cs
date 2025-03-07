@@ -22,10 +22,17 @@ namespace X2SLIME3D
 
         public void Start()
         {
-            uiView.buttonHello.OnClickAsObservable()
+            uiView.buttonMusic.OnClickAsObservable()
                 .Subscribe( _ => 
                 {
-                    uiService.Hello();
+                    uiService.SetMusicVolume();
+                })
+                .AddTo(disposable);
+
+            uiView.buttonSound.OnClickAsObservable()
+                .Subscribe( _ => 
+                {
+                    uiService.SetSoundVolume();
                 })
                 .AddTo(disposable);
             

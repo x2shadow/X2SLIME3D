@@ -1,7 +1,5 @@
 
-using System;
 using R3;
-using UnityEngine.SceneManagement;
 
 namespace X2SLIME3D
 {
@@ -15,9 +13,14 @@ namespace X2SLIME3D
          OnLevelUpdated.OnNext(currentLevel);
       }
 
-      public void Hello()
+      public void SetMusicVolume()
       {
-         UnityEngine.Debug.Log("UI HELLO");
+         UnityEngine.Debug.Log("Music Volume");
+      }
+
+      public void SetSoundVolume()
+      {
+         UnityEngine.Debug.Log("Sound Volume");
       }
 
       public void Restart()

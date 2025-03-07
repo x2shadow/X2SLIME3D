@@ -8,7 +8,8 @@ namespace X2SLIME3D
 {
     public class UIView : MonoBehaviour
     {
-        public Button buttonHello;
+        public Button buttonMusic;
+        public Button buttonSound;
         public Button buttonRestart;
         public TextMeshProUGUI levelNumber;
 
