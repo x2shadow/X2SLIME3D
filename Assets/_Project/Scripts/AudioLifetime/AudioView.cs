@@ -32,7 +32,7 @@ namespace X2SLIME3D
             musicSource.playOnAwake = true;
             musicSource.volume = 1f;
             musicSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Music")[0];
-            //musicSource.Play();
+            musicSource.Play();
 
             soundSource = gameObject.AddComponent<AudioSource>();
             soundSource.playOnAwake = false;

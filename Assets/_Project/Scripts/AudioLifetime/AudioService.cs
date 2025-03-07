@@ -26,12 +26,7 @@ namespace X2SLIME3D
 
         const string MusicVolumeKey = "MusicVolume";
         const string SoundVolumeKey = "SoundVolume";
-        const string CollisionSoundVolumeKey = "CollisionSoundVolume";
-
-
-        // Reactive-свойства для громкости
-        public ReactiveProperty<float> MusicVolume { get; private set; }
-        public ReactiveProperty<float> SoundVolume { get; private set; }
+        const string CollisionSoundVolumeKey = "CollisionVolume";
 
         public Subject<AudioClip> OnSoundPlayed  = new Subject<AudioClip>();
         public Subject<Unit> OnSoundCollisionPlayed = new Subject<Unit>();
@@ -55,34 +50,12 @@ namespace X2SLIME3D
                 { SoundType.Win4,       audioView.soundWin4 },
                 { SoundType.Win5,       audioView.soundWin5 }
             };
-
-            // Инициализация реактивных свойств из PlayerPrefs
-            MusicVolume = new ReactiveProperty<float>(PlayerPrefs.GetFloat(MusicVolumeKey, 0.5f));
-            SoundVolume = new ReactiveProperty<float>(PlayerPrefs.GetFloat(SoundVolumeKey, 0.5f));
-
-            // Подписка на изменения громкости музыки
-            MusicVolume.Subscribe(volume =>
-            {
-                float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
-                audioMixer.SetFloat("MusicVolume", dB);
-                PlayerPrefs.SetFloat(MusicVolumeKey, volume);
-                PlayerPrefs.Save();
-            });
-
-            // Подписка на изменения громкости звуков
-            SoundVolume.Subscribe(volume =>
-            {
-                float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
-                audioMixer.SetFloat("SoundVolume", dB);
-                PlayerPrefs.SetFloat(SoundVolumeKey, volume);
-                PlayerPrefs.Save();
-            });
         }
 
         public void SetMusicVolume(float volume)
         {
             float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
-            audioMixer.SetFloat("MusicVolume", dB);
+            audioMixer.SetFloat(MusicVolumeKey, dB);
 
             PlayerPrefs.SetFloat(MusicVolumeKey, volume); 
             PlayerPrefs.Save(); 
@@ -91,13 +64,51 @@ namespace X2SLIME3D
         public void SetSoundVolume(float volume)
         {
             float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
-            audioMixer.SetFloat("SoundVolume", dB);
-            audioMixer.SetFloat("CollisionSoundVolume", dB);
+            audioMixer.SetFloat(SoundVolumeKey, dB);
+            audioMixer.SetFloat(CollisionSoundVolumeKey, dB);
 
 
             PlayerPrefs.SetFloat(SoundVolumeKey, volume); 
             PlayerPrefs.SetFloat(CollisionSoundVolumeKey, volume); 
             PlayerPrefs.Save(); 
+        }
+
+        public void ToggleMusic()
+        {
+            float dB;
+            audioMixer.GetFloat(MusicVolumeKey, out dB);
+            float currentVolume = Mathf.Pow(10, dB / 20);
+
+            if (dB > -80f)
+            {
+                PlayerPrefs.SetFloat("LastMusicVolume", currentVolume); 
+                PlayerPrefs.Save();
+                SetMusicVolume(0);
+            }
+            else
+            {
+                float lastVolume = PlayerPrefs.GetFloat("LastMusicVolume", 0.5f);
+                SetMusicVolume(lastVolume);
+            }
+        }
+
+        public void ToggleSound()
+        {
+            float dB;
+            audioMixer.GetFloat(SoundVolumeKey, out dB);
+            float currentVolume = Mathf.Pow(10, dB / 20);
+
+            if (dB > -80f)
+            {
+                PlayerPrefs.SetFloat("LastSoundVolume", currentVolume); 
+                PlayerPrefs.Save();
+                SetSoundVolume(0);
+            }
+            else
+            {
+                float lastVolume = PlayerPrefs.GetFloat("LastSoundVolume", 0.5f);
+                SetSoundVolume(lastVolume);
+            }
         }
 
         public void PlaySound(SoundType type) => OnSoundPlayed.OnNext(soundClips[type]);

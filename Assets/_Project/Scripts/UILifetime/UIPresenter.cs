@@ -13,11 +13,13 @@ namespace X2SLIME3D
 
         readonly UIView uiView;
         readonly UIService uiService;
+        readonly AudioService audioService;
 
-        UIPresenter(UIView uiView, UIService uiService)
+        UIPresenter(UIView uiView, UIService uiService, AudioService audioService)
         {
             this.uiView = uiView;
             this.uiService = uiService;
+            this.audioService = audioService;
         }
 
         public void Start()
@@ -25,14 +27,14 @@ namespace X2SLIME3D
             uiView.buttonMusic.OnClickAsObservable()
                 .Subscribe( _ => 
                 {
-                    uiService.SetMusicVolume();
+                    audioService.ToggleMusic();
                 })
                 .AddTo(disposable);
 
             uiView.buttonSound.OnClickAsObservable()
                 .Subscribe( _ => 
                 {
-                    uiService.SetSoundVolume();
+                    audioService.ToggleSound();
                 })
                 .AddTo(disposable);
             
