@@ -26,12 +26,15 @@ namespace X2SLIME3D
 
         const string MusicVolumeKey = "MusicVolume";
         const string SoundVolumeKey = "SoundVolume";
+        const string CollisionSoundVolumeKey = "CollisionSoundVolume";
+
 
         // Reactive-свойства для громкости
         public ReactiveProperty<float> MusicVolume { get; private set; }
         public ReactiveProperty<float> SoundVolume { get; private set; }
 
         public Subject<AudioClip> OnSoundPlayed  = new Subject<AudioClip>();
+        public Subject<Unit> OnSoundCollisionPlayed = new Subject<Unit>();
         public Subject<Unit> OnSoundJumpInPlayed = new Subject<Unit>();
         public Subject<Unit> OnSoundJumpInStoped = new Subject<Unit>();
 
@@ -89,8 +92,11 @@ namespace X2SLIME3D
         {
             float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
             audioMixer.SetFloat("SoundVolume", dB);
+            audioMixer.SetFloat("CollisionSoundVolume", dB);
+
 
             PlayerPrefs.SetFloat(SoundVolumeKey, volume); 
+            PlayerPrefs.SetFloat(CollisionSoundVolumeKey, volume); 
             PlayerPrefs.Save(); 
         }
 
@@ -98,5 +104,7 @@ namespace X2SLIME3D
         
         public void PlaySoundJumpIn() => OnSoundJumpInPlayed.OnNext(Unit.Default);
         public void StopSoundJumpIn() => OnSoundJumpInStoped.OnNext(Unit.Default);
+
+        public void PlaySoundCollision() => OnSoundCollisionPlayed.OnNext(Unit.Default);
     }
 }

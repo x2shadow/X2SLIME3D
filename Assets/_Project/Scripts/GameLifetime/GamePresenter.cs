@@ -95,11 +95,14 @@ namespace X2SLIME3D
             bool levelCompleted = false;
             while (!levelCompleted)
             {
+                var waterRestart = restart.OnLevelRestarted.Select(_ => RestartSource.Water);
+                var uiRestart    = uiService.OnLevelRestarted.Select(_ => RestartSource.UI);
+
+                var restartTcs = new UniTaskCompletionSource<RestartSource>();
                 var finishTcs  = new UniTaskCompletionSource();
-                var restartTcs = new UniTaskCompletionSource();
 
                 var subscriptionFinish  = finish.OnLevelFinished.Subscribe(_ => finishTcs.TrySetResult());
-                var subscriptionRestart = Observable.Merge(restart.OnLevelRestarted, uiService.OnLevelRestarted).Subscribe(_ => restartTcs.TrySetResult());
+                var subscriptionRestart = Observable.Merge(waterRestart, uiRestart).Subscribe(source => restartTcs.TrySetResult(source));
 
                 // Ожидаем либо завершения уровня, либо "падения в воду"
                 var completedTask = await UniTask.WhenAny(finishTcs.Task, restartTcs.Task);
@@ -110,8 +113,14 @@ namespace X2SLIME3D
 
                 if (completedTask == 1)
                 {
-                    Debug.Log("Игрок упал в воду! Перемещаем в SpawnPoint.");
-                    audioService.PlaySound(SoundType.Splash);
+                    var source = await restartTcs.Task;
+                    
+                    if (source == RestartSource.Water)
+                    {
+                        Debug.Log("Игрок упал в воду! Перемещаем в SpawnPoint.");
+                        audioService.PlaySound(SoundType.Splash);
+                    }
+
                     player.gameObject.SetActive(false);
                     MovePlayerToSpawnPoint(spawnPoint);
                     await UniTask.Delay(100);
@@ -201,5 +210,11 @@ namespace X2SLIME3D
         }
 
         public void Dispose() => disposable.Dispose();
+    }
+
+    public enum RestartSource
+    {
+        Water, // игрок упал в воду
+        UI     // рестарт через кнопку в UI
     }
 }

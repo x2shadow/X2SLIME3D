@@ -494,6 +494,7 @@ MonoBehaviour:
   soundWin5: {fileID: 8300000, guid: 09bd98f6192aaaf4aae3d5ea92e6df67, type: 3}
   musicSource: {fileID: 0}
   soundSource: {fileID: 0}
+  collisionSoundSource: {fileID: 0}
 --- !u!4 &239971031
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,10 +2201,6 @@ PrefabInstance:
       propertyPath: playerView
       value: 
       objectReference: {fileID: 1592852228}
-    - target: {fileID: 41463313119751536, guid: d439895fbe5aa824f8b44b3875334834, type: 3}
-      propertyPath: autoInjectGameObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 41463313119751536, guid: d439895fbe5aa824f8b44b3875334834, type: 3}
       propertyPath: autoInjectGameObjects.Array.data[0]
       value: 

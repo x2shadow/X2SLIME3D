@@ -49,4 +49,6 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 0}
+  - {fileID: 0}
   playerView: {fileID: 0}
+  audioView: {fileID: 0}

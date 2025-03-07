@@ -15,20 +15,17 @@ namespace X2SLIME3D
         readonly PlayerService playerService;
         readonly InputReader inputReader;
         readonly AudioService audioService;
-        readonly JumpConfig jumpConfig;
 
         readonly ReactiveProperty<float> pressStartTime = new ReactiveProperty<float>();
         readonly ReactiveProperty<bool> jumpEligible = new ReactiveProperty<bool>(false);
         bool isJumpButtonHeld = false; // Флаг удержания кнопки в воздухе
         bool jumpInPlayed = false;     // Флаг: уже запущен звук JumpIn в текущей попытке прыжка
 
-        PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader, JumpConfig jumpConfig,
-                        AudioService audioService)
+        PlayerPresenter(PlayerView playerView, PlayerService playerService, InputReader inputReader, AudioService audioService)
         {
             this.playerView    = playerView;
             this.playerService = playerService;
             this.inputReader   = inputReader;
-            this.jumpConfig    = jumpConfig;
             this.audioService  = audioService;
         }
 
@@ -93,6 +90,10 @@ namespace X2SLIME3D
                         jumpInPlayed = true;
                     }
                 })
+                .AddTo(disposable);
+
+            playerView.OnCollisionImpact
+                .Subscribe(_ => audioService.PlaySoundCollision())
                 .AddTo(disposable);
         }
 

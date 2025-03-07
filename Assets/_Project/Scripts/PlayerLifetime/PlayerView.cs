@@ -20,6 +20,9 @@ namespace X2SLIME3D
         public ReadOnlyReactiveProperty<bool> IsChargingJumpObservable => isChargingJump;
         public bool IsGrounded => isGrounded.Value;
 
+        public Observable<Unit> OnCollisionImpact => onCollisionImpact.AsObservable();
+        private readonly Subject<Unit> onCollisionImpact = new Subject<Unit>();
+
         private void Start()
         {
             isChargingJump.Subscribe(charging =>
@@ -45,6 +48,14 @@ namespace X2SLIME3D
         {
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(new Vector3(forwardForce, jumpForce, 0f), ForceMode.Impulse);
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (collision.relativeVelocity.magnitude > 8f) // Проверяем силу удара
+            {
+                onCollisionImpact.OnNext(Unit.Default);
+            }
         }
 
         void OnDrawGizmos()

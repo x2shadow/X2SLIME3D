@@ -20,6 +20,8 @@ namespace X2SLIME3D
 
         [HideInInspector] public AudioSource musicSource;
         [HideInInspector] public AudioSource soundSource;
+        [HideInInspector] public AudioSource collisionSoundSource;
+
 
         void Awake()
         {
@@ -36,9 +38,21 @@ namespace X2SLIME3D
             soundSource.playOnAwake = false;
             soundSource.volume = 1f;
             soundSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("Sound")[0];
+
+            collisionSoundSource = gameObject.AddComponent<AudioSource>();
+            collisionSoundSource.playOnAwake = false;
+            collisionSoundSource.volume = 1f;
+            collisionSoundSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups("CollisionSound")[0];
         }
 
         public void PlaySound(AudioClip sound) => soundSource.PlayOneShot(sound);
+        
+        public void PlaySoundCollision()
+        {
+            collisionSoundSource.pitch = Random.Range(0.85f, 1.15f); 
+            AudioClip randomClip = Random.Range(0, 2) == 0 ? soundCollision1 : soundCollision2;
+            collisionSoundSource.PlayOneShot(randomClip);
+        }
 
         public void PlaySoundJumpIn()
         {
