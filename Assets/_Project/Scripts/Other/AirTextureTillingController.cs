@@ -8,7 +8,7 @@ public class AirTextureTilingController : MonoBehaviour
     float tilingX;
     float tilingY;
 
-    void Update()
+    void Start()
     {
         UpdateTiling();
     }
