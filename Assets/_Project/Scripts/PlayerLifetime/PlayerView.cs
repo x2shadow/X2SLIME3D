@@ -6,8 +6,10 @@ namespace X2SLIME3D
 {
     public class PlayerView : MonoBehaviour
     {
+        ColorPalette palette;
+
         [SerializeField] private Rigidbody rb;
-        [SerializeField] private Renderer playerRenderer; 
+        public Renderer playerRenderer; 
 
         [Header("Ground Check (SphereCast)")]
         [SerializeField] private float groundCheckDistance = 1f;
@@ -23,11 +25,16 @@ namespace X2SLIME3D
         public Observable<Unit> OnCollisionImpact => onCollisionImpact.AsObservable();
         private readonly Subject<Unit> onCollisionImpact = new Subject<Unit>();
 
+        private void Awake()
+        {
+            palette = Resources.Load<ColorPalette>("ColorPalette");
+        }
+
         private void Start()
         {
             isChargingJump.Subscribe(charging =>
             {
-                playerRenderer.material.color = charging ? Color.yellow : Color.green;
+                playerRenderer.material.color = charging ? palette.characterJumpColor : palette.characterColor;
             });
         }
 

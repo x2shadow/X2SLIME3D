@@ -1384,6 +1384,147 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a41a5d5dd3de75b4b9a6c7a2af7f0ad8, type: 3}
+--- !u!1001 &6128646796291738882
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterColor.g
+      value: 0.69014573
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointColor.g
+      value: 0.0670706
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientTopColor.b
+      value: 0.1071111
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientTopColor.g
+      value: 0.18787512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientTopColor.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterJumpColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterJumpColor.g
+      value: 0.2263242
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterJumpColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointFlagColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointFlagColor.g
+      value: 0.14075139
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointFlagColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientBottomColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientBottomColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientBottomColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeOutsideColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeOutsideColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeOutsideColor.r
+      value: 0.24928665
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110947856467036265, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: m_Name
+      value: ColorChanger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
 --- !u!1001 &8010212127867560429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1468,3 +1609,4 @@ SceneRoots:
   - {fileID: 1689264926}
   - {fileID: 240197877}
   - {fileID: 406791700}
+  - {fileID: 6128646796291738882}

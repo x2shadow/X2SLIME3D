@@ -19,6 +19,8 @@ namespace X2SLIME3D
         readonly AudioService audioService;
 
         private int currentLevelIndex = 0;
+        private ColorPalette palette;
+
 
         private int winSoundIndex = 0;
         private readonly SoundType[] winSounds = 
@@ -35,6 +37,8 @@ namespace X2SLIME3D
 
         public void Start()
         {
+            palette = Resources.Load<ColorPalette>("ColorPalette");
+
             currentLevelIndex = GetLoadedLevelNumber() - 1;
             RunGameFlow().Forget();
         }
@@ -81,6 +85,7 @@ namespace X2SLIME3D
             await UniTask.Delay(100);
             MovePlayerToSpawnPoint(spawnPoint);
             await UniTask.Delay(100);
+            player.playerRenderer.material.color = palette.characterColor;
             player.gameObject.SetActive(true);
 
 

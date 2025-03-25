@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4043c152b1166e84abcce137abf3cc2a, type: 3}
+  m_Name: ColorPalette
+  m_EditorClassIdentifier: 
+  characterColor: {r: 0.08276451, g: 1, b: 0, a: 0}
+  characterJumpColor: {r: 0.9920672, g: 1, b: 0, a: 0}
+  checkpointMaterial: {fileID: 2100000, guid: 35cea9beb8dc3fd45aa2971de043bdd9, type: 2}
+  checkpointFlagMaterial: {fileID: 2100000, guid: cb156a687955bc14088bbd163acdf134, type: 2}
+  platformMaterial: {fileID: 2100000, guid: ebd2bddb4e0aa2941ad37bb608e056c5, type: 2}
+  platformOutsideMaterial: {fileID: 2100000, guid: 7059c340f7ce4814dbbb76f4739c438f, type: 2}
+  platformInsideMaterial: {fileID: 2100000, guid: 32933644e9606764ba818877739eeca6, type: 2}
+  bouncyCubeOutsideMaterial: {fileID: 2100000, guid: 739d4776ff7f84e4ca49ce61dbf4fa8f, type: 2}
+  bouncyCubeInsideMaterial: {fileID: 2100000, guid: 9dc2a516fd1367c4f93a92f45e6f39cf, type: 2}
+  waterMaterial: {fileID: 2100000, guid: 856d12043599686498531b38ac1d4c39, type: 2}
+  gradientSkybox: {fileID: 2100000, guid: 8d9f0849684dc5c478868241326881a0, type: 2}
