@@ -52,6 +52,9 @@ namespace X2SLIME3D
             };
         }
 
+        bool adMutedMusic = false;
+        bool adMutedSound = false;
+
         public void SetMusicVolume(float volume)
         {
             float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
@@ -108,6 +111,50 @@ namespace X2SLIME3D
             {
                 float lastVolume = PlayerPrefs.GetFloat("LastSoundVolume", 0.5f);
                 SetSoundVolume(lastVolume);
+            }
+        }
+
+        public void MuteForAd()
+        {
+            float musicDB;
+            audioMixer.GetFloat(MusicVolumeKey, out musicDB);
+            
+            if (musicDB > -80f)
+            {
+                float currentmusicVolume = Mathf.Pow(10, musicDB / 20);
+                PlayerPrefs.SetFloat("LastMusicVolume", currentmusicVolume); 
+                PlayerPrefs.Save();
+                adMutedMusic = true;
+                SetMusicVolume(0);
+            }
+
+            float soundDB;
+            audioMixer.GetFloat(SoundVolumeKey, out soundDB);
+            
+            if (soundDB > -80f)
+            {
+                float currentSoundVolume = Mathf.Pow(10, soundDB / 20);
+                PlayerPrefs.SetFloat("LastSoundVolume", currentSoundVolume); 
+                PlayerPrefs.Save();
+                adMutedSound = true;
+                SetSoundVolume(0);
+            }
+        }
+
+        public void UnmuteAfterAd()
+        {
+            if (adMutedMusic)
+            {
+                float lastMusicVolume = PlayerPrefs.GetFloat("LastMusicVolume", 0.5f);
+                SetMusicVolume(lastMusicVolume);
+                adMutedMusic = false;
+            }
+
+            if (adMutedSound)
+            {
+                float lastSoundVolume = PlayerPrefs.GetFloat("LastSoundVolume", 0.5f);
+                SetSoundVolume(lastSoundVolume);
+                adMutedSound = false;
             }
         }
 

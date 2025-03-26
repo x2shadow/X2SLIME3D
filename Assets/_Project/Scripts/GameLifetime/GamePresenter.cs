@@ -7,6 +7,7 @@ using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using GamePush;
 
 namespace X2SLIME3D
 {
@@ -35,8 +36,12 @@ namespace X2SLIME3D
             this.audioService = audioService;
         }
 
-        public void Start()
+        public async void Start()
         {
+            await GP_Init.Ready;
+            if(GP_Ads.IsPreloaderPlaying()) audioService.MuteForAd();
+            GP_Ads.OnPreloaderClose += (bool isClosed) => audioService.UnmuteAfterAd();
+
             palette = Resources.Load<ColorPalette>("ColorPalette");
 
             currentLevelIndex = GetLoadedLevelNumber() - 1;
@@ -124,6 +129,7 @@ namespace X2SLIME3D
                     {
                         Debug.Log("Игрок упал в воду! Перемещаем в SpawnPoint.");
                         audioService.PlaySound(SoundType.Splash);
+                        ShowAd();
                     }
 
                     player.gameObject.SetActive(false);
@@ -148,6 +154,7 @@ namespace X2SLIME3D
             AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
             await unloadOp.ToUniTask();
         }
+
 
         //vvv
         private GameObject FindObjectByNameInScene(Scene scene, string objectName)
@@ -212,6 +219,26 @@ namespace X2SLIME3D
             player.transform.position = spawnPoint.transform.position;
             rb.isKinematic = false;
             Debug.Log("Игрок перемещён в SpawnPoint");
+        }
+
+        void ShowAd()
+        {
+            if (GP_Ads.IsFullscreenAvailable())
+            {
+                GP_Ads.ShowFullscreen(OnFullscreenStart, OnFullscreenClose);
+            }
+        }
+
+        private void OnFullscreenStart()
+        {
+            Debug.Log("ON FULLSCREEN START");
+            audioService.MuteForAd();
+        }
+
+        private void OnFullscreenClose(bool success)
+        {
+            Debug.Log("ON FULLSCREEN CLOSE: " + success);
+            audioService.UnmuteAfterAd();
         }
 
         public void Dispose() => disposable.Dispose();
