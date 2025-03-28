@@ -1433,88 +1433,144 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterAlpha
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.a
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.b
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.g
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.r
+      value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformColor.b
+      value: 0.93333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformColor.g
+      value: 0.38039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformColor.r
+      value: 0.2627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: characterColor.b
-      value: 0
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: characterColor.g
-      value: 0.69014573
+      value: 0.7882353
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: characterColor.r
-      value: 1
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: checkpointColor.b
-      value: 0
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: checkpointColor.g
-      value: 0.0670706
+      value: 0.7882353
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: checkpointColor.r
-      value: 1
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: gradientTopColor.b
-      value: 0.1071111
+      value: 0.52156866
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: gradientTopColor.g
-      value: 0.18787512
+      value: 0.14509805
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: gradientTopColor.r
-      value: 0.7830189
+      value: 0.96862745
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: characterJumpColor.b
-      value: 0
+      value: 0.636
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: characterJumpColor.g
-      value: 0.2263242
+      value: 0.53265
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: characterJumpColor.r
-      value: 1
+      value: 0.20140003
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: checkpointFlagColor.b
-      value: 0
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: checkpointFlagColor.g
-      value: 0.14075139
+      value: 0.7882353
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: checkpointFlagColor.r
-      value: 1
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: gradientBottomColor.b
-      value: 0
+      value: 0.6392157
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: gradientBottomColor.g
-      value: 0
+      value: 0.047058824
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: gradientBottomColor.r
-      value: 0
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformInsideColor.b
+      value: 0.9411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformInsideColor.g
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformInsideColor.r
+      value: 0.29803923
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeInsideColor.b
+      value: 0.61960787
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeInsideColor.g
+      value: 0.09019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeInsideColor.r
+      value: 0.70980394
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: bouncyCubeOutsideColor.b
-      value: 0
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: bouncyCubeOutsideColor.g
-      value: 1
+      value: 0.7882353
       objectReference: {fileID: 0}
     - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: bouncyCubeOutsideColor.r
-      value: 0.24928665
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 8110947856467036265, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: m_Name
