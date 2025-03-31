@@ -21,6 +21,7 @@ namespace X2SLIME3D
         {
             await GP_Init.Ready;
             language = GP_Language.Current();
+            if(language == Language.Russian) UpdateLevelNumber(1);
         }
 
         public void UpdateLevelNumber(int number)
