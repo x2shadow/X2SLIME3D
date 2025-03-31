@@ -358,7 +358,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1daa822b6a3dc848a0c53dd567b8e71, type: 3}
---- !u!1001 &1581881840
+--- !u!1001 &765555572
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -405,6 +405,146 @@ PrefabInstance:
     - target: {fileID: 2628439292497343605, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterAlpha
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.a
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: waterColor.r
+      value: 0.0627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformColor.b
+      value: 0.047058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformColor.g
+      value: 0.09803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformColor.r
+      value: 0.58431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterColor.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterColor.r
+      value: 0.0627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointColor.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointColor.r
+      value: 0.0627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientTopColor.b
+      value: 0.49803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientTopColor.g
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientTopColor.r
+      value: 0.015686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterJumpColor.b
+      value: 0.1875
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterJumpColor.g
+      value: 0.189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: characterJumpColor.r
+      value: 0.023999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointFlagColor.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointFlagColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: checkpointFlagColor.r
+      value: 0.0627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientBottomColor.b
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientBottomColor.g
+      value: 0.011764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: gradientBottomColor.r
+      value: 0.38039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformInsideColor.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformInsideColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: platformInsideColor.r
+      value: 0.0627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeInsideColor.b
+      value: 0.019607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeInsideColor.g
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeInsideColor.r
+      value: 0.8901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeOutsideColor.b
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeOutsideColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294829635752650374, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
+      propertyPath: bouncyCubeOutsideColor.r
+      value: 0.0627451
       objectReference: {fileID: 0}
     - target: {fileID: 8110947856467036265, guid: 81ec89daa7d27c146837469a1e7bae44, type: 3}
       propertyPath: m_Name
@@ -547,4 +687,4 @@ SceneRoots:
   - {fileID: 1721723363}
   - {fileID: 446566214}
   - {fileID: 666213815}
-  - {fileID: 1581881840}
+  - {fileID: 765555572}
