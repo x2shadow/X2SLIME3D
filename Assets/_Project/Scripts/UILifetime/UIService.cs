@@ -7,6 +7,7 @@ namespace X2SLIME3D
    {
       public BehaviorSubject<int> OnLevelUpdated = new BehaviorSubject<int>(0);
       public Subject<Unit> OnLevelRestarted = new Subject<Unit>();
+      public Subject<Unit> OnShowYouWin = new Subject<Unit>();
 
       public void UpdateLevel(int currentLevel)
       {
@@ -26,6 +27,11 @@ namespace X2SLIME3D
       public void Restart()
       {
          OnLevelRestarted.OnNext(Unit.Default);
+      }
+
+      public void ShowYouWin()
+      {
+         OnShowYouWin.OnNext(Unit.Default);
       }
    }
 }

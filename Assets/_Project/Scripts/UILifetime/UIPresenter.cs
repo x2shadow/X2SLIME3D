@@ -51,6 +51,13 @@ namespace X2SLIME3D
                     uiView.UpdateLevelNumber(number);
                 })
                 .AddTo(disposable);
+
+            uiService.OnShowYouWin
+                .Subscribe( _ =>
+                {
+                    uiView.ShowYouWin();
+                })
+                .AddTo(disposable);
         }
 
         public void Dispose() => disposable.Dispose();

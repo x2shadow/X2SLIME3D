@@ -56,6 +56,7 @@ namespace X2SLIME3D
                 currentLevelIndex++;
             }
             Debug.Log("Все уровни пройдены!");
+            uiService.ShowYouWin();
             currentLevelIndex = 0;
         }
 
