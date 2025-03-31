@@ -17,8 +17,9 @@ namespace X2SLIME3D
 
         Language language;
 
-        void Start()
+        async void Start()
         {
+            await GP_Init.Ready;
             language = GP_Language.Current();
         }
 
