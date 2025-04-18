@@ -93,6 +93,7 @@ namespace X2SLIME3D
             await UniTask.Delay(100);
             player.playerRenderer.material.color = palette.characterColor;
             player.gameObject.SetActive(true);
+            GP_Game.GameReady();
 
 
             // Находим компоненты, отвечающие за завершение уровня и за "падение в воду"
