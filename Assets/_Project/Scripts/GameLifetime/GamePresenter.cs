@@ -54,10 +54,12 @@ namespace X2SLIME3D
             {
                 await LoadAndPlayCurrentLevel();
                 currentLevelIndex++;
+                GP_Player.Set("level", currentLevelIndex);
             }
             Debug.Log("Все уровни пройдены!");
             uiService.ShowYouWin();
-            currentLevelIndex = 0;
+            currentLevelIndex = 1;
+            GP_Player.Set("level", currentLevelIndex);
         }
 
         private async UniTask LoadAndPlayCurrentLevel()
@@ -210,6 +212,8 @@ namespace X2SLIME3D
                     }
                 }
             }
+            int level = GP_Player.GetInt("level");
+            if (level != 0) return level;
             return 1; // Если ни одна сцена не найдена или число не удалось распарсить
         }
 
