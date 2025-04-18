@@ -234,13 +234,13 @@ namespace X2SLIME3D
         private void OnFullscreenStart()
         {
             Debug.Log("ON FULLSCREEN START");
-            audioService.MuteForAd();
+            //audioService.MuteForAd();
         }
 
         private void OnFullscreenClose(bool success)
         {
             Debug.Log("ON FULLSCREEN CLOSE: " + success);
-            audioService.UnmuteAfterAd();
+            //audioService.UnmuteAfterAd();
         }
 
         public void Dispose() => disposable.Dispose();

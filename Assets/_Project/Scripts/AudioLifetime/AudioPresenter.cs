@@ -1,4 +1,5 @@
 using System;
+using GamePush;
 using R3;
 using VContainer.Unity;
 
@@ -19,6 +20,9 @@ namespace X2SLIME3D
 
         public void Start()
         {
+            GP_Game.OnPause  += audioService.MuteForAd;
+            GP_Game.OnResume += audioService.UnmuteAfterAd;
+
             audioService.OnSoundPlayed
                 .Subscribe( sound =>
                 {
@@ -48,6 +52,12 @@ namespace X2SLIME3D
                 .AddTo(disposable);
         }
 
-        public void Dispose() => disposable.Dispose();
+        public void Dispose()
+        {
+            disposable.Dispose();
+
+            GP_Game.OnPause  -= audioService.MuteForAd;
+            GP_Game.OnResume -= audioService.UnmuteAfterAd;
+        }
     }
 }
