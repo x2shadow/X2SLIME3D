@@ -54,12 +54,14 @@ namespace X2SLIME3D
             {
                 await LoadAndPlayCurrentLevel();
                 currentLevelIndex++;
-                GP_Player.Set("level", currentLevelIndex);
+                GP_Player.Set("level", currentLevelIndex + 1);
+                GP_Player.Sync();
             }
             Debug.Log("Все уровни пройдены!");
             uiService.ShowYouWin();
             currentLevelIndex = 1;
             GP_Player.Set("level", currentLevelIndex);
+            GP_Player.Sync();
         }
 
         private async UniTask LoadAndPlayCurrentLevel()
