@@ -56,8 +56,10 @@ namespace X2SLIME3D
         bool adMutedMusic = false;
         bool adMutedSound = false;
 
-        public void Initialize()
+        public async void Initialize()
         {
+            await GP_Init.Ready;
+
             bool musicMuted = GP_Player.GetBool("music_muted");
             bool soundMuted = GP_Player.GetBool("sound_muted");
 
