@@ -1,3 +1,4 @@
+using GamePush;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -63,6 +64,12 @@ namespace X2SLIME3D
         public void StopSoundJumpIn()
         {
             if (soundSource.clip == soundJumpIn && soundSource.isPlaying) soundSource.Stop();
+        }
+
+        async void OnApplicationFocus(bool focus)
+        {
+            await GP_Init.Ready;
+            if (focus) GP_Game.Resume(); else GP_Game.Pause();
         }
     }
 }

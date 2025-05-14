@@ -39,8 +39,8 @@ namespace X2SLIME3D
         public async void Start()
         {
             await GP_Init.Ready;
-            if(GP_Ads.IsPreloaderPlaying()) audioService.MuteForAd();
-            GP_Ads.OnPreloaderClose += (bool isClosed) => audioService.UnmuteAfterAd();
+            //if(GP_Ads.IsPreloaderPlaying()) audioService.MuteForAd();
+            //GP_Ads.OnPreloaderClose += (bool isClosed) => audioService.UnmuteAfterAd();
 
             palette = Resources.Load<ColorPalette>("ColorPalette");
 

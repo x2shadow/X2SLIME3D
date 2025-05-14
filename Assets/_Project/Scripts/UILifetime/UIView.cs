@@ -21,7 +21,15 @@ namespace X2SLIME3D
         {
             await GP_Init.Ready;
             language = GP_Language.Current();
-            if(language == Language.Russian) UpdateLevelNumber(1);
+
+            bool musicMuted = GP_Player.GetBool("music_muted");
+            bool soundMuted = GP_Player.GetBool("sound_muted");
+
+            if (musicMuted) buttonMusic.gameObject.GetComponent<ToggleUI>().UpdateIcon();
+            if (soundMuted) buttonSound.gameObject.GetComponent<ToggleUI>().UpdateIcon();
+
+            int level = GP_Player.GetInt("level");
+            UpdateLevelNumber(level);
         }
 
         public void UpdateLevelNumber(int number)

@@ -23,6 +23,8 @@ namespace X2SLIME3D
             GP_Game.OnPause  += audioService.MuteForAd;
             GP_Game.OnResume += audioService.UnmuteAfterAd;
 
+            audioService.Initialize();
+
             audioService.OnSoundPlayed
                 .Subscribe( sound =>
                 {

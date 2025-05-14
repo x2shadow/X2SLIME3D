@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using R3;
 using System.Collections.Generic;
+using GamePush;
 
 namespace X2SLIME3D
 {
@@ -55,6 +56,15 @@ namespace X2SLIME3D
         bool adMutedMusic = false;
         bool adMutedSound = false;
 
+        public void Initialize()
+        {
+            bool musicMuted = GP_Player.GetBool("music_muted");
+            bool soundMuted = GP_Player.GetBool("sound_muted");
+
+            if (musicMuted) SetMusicVolume(0);
+            if (soundMuted) SetSoundVolume(0);
+        }
+
         public void SetMusicVolume(float volume)
         {
             float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
@@ -86,11 +96,19 @@ namespace X2SLIME3D
             {
                 PlayerPrefs.SetFloat("LastMusicVolume", currentVolume); 
                 PlayerPrefs.Save();
+
+                GP_Player.Set("music_muted", true);
+                GP_Player.Sync();
+
                 SetMusicVolume(0);
             }
             else
             {
                 float lastVolume = PlayerPrefs.GetFloat("LastMusicVolume", 0.5f);
+
+                GP_Player.Set("music_muted", false);
+                GP_Player.Sync();
+
                 SetMusicVolume(lastVolume);
             }
         }
@@ -105,11 +123,19 @@ namespace X2SLIME3D
             {
                 PlayerPrefs.SetFloat("LastSoundVolume", currentVolume); 
                 PlayerPrefs.Save();
+
+                GP_Player.Set("sound_muted", true);
+                GP_Player.Sync();
+                
                 SetSoundVolume(0);
             }
             else
             {
                 float lastVolume = PlayerPrefs.GetFloat("LastSoundVolume", 0.5f);
+
+                GP_Player.Set("sound_muted", false);
+                GP_Player.Sync();
+
                 SetSoundVolume(lastVolume);
             }
         }
